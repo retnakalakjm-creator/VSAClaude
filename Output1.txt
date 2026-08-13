@@ -1,0 +1,63 @@
+====================================================================================================
+VSACLAUDE HISTORICAL VALIDATION REPORT
+====================================================================================================
+
+
+TICKER: DLF
+  Data range: 2007-07-05 to 2026-08-06 (4711 bars)
+  Raw swings: 6051 → Structural: 203 (filter rate: 3.4%)
+  Trend: UP (HEALTHY) strength=100.00% confidence=50.00%
+  Swings: 2 bullish, 0 bearish
+  Daily tags: 1267 total (716 major, 551 minor) — 56.5% are MAJOR_SIGNAL
+  Regime segments: 126
+  ✗ MISSED 2008 Financial Crisis (2008-01-01 to 2008-11-30)
+  ✗ MISSED 2020 COVID Crash (2020-02-01 to 2020-04-15)
+
+TICKER: HDFCBANK
+  Data range: 1996-01-01 to 2026-08-07 (7684 bars)
+  Raw swings: 5376 → Structural: 598 (filter rate: 11.1%)
+  Trend: DOWN (CORRECTING) strength=75.00% confidence=50.00%
+  Swings: 1 bullish, 2 bearish
+  Daily tags: 1916 total (1108 major, 808 minor) — 57.8% are MAJOR_SIGNAL
+  Regime segments: 320
+  ✓ DETECTED 2008 Financial Crisis: 1 downtrend segment(s)
+  ✓ DETECTED 2020 COVID Crash: 1 downtrend segment(s)
+
+TICKER: RELIANCE
+  Data range: 1996-01-01 to 2026-08-07 (7681 bars)
+  Raw swings: 5446 → Structural: 710 (filter rate: 13.0%)
+  Trend: RANGE (DEVELOPING) strength=0.00% confidence=50.00%
+  Swings: 0 bullish, 0 bearish
+  Daily tags: 2067 total (1200 major, 867 minor) — 58.1% are MAJOR_SIGNAL
+  Regime segments: 404
+  ✓ DETECTED 2008 Financial Crisis: 2 downtrend segment(s)
+  ✓ DETECTED 2020 COVID Crash: 2 downtrend segment(s)
+
+TICKER: TATASTEEL
+  Data range: 1996-01-01 to 2026-08-07 (7684 bars)
+  Raw swings: 7939 → Structural: 499 (filter rate: 6.3%)
+  Trend: DOWN (EXHAUSTED) strength=100.00% confidence=50.00%
+  Swings: 0 bullish, 2 bearish
+  Daily tags: 2061 total (1212 major, 849 minor) — 58.8% are MAJOR_SIGNAL
+  Regime segments: 253
+  ✗ MISSED 2008 Financial Crisis (2008-01-01 to 2008-11-30)
+  ✓ DETECTED 2020 COVID Crash: 1 downtrend segment(s)
+
+TICKER: TITAN
+  Data range: 1996-01-01 to 2026-08-07 (7684 bars)
+  Raw swings: 8346 → Structural: 428 (filter rate: 5.1%)
+  Trend: UP (HEALTHY) strength=100.00% confidence=75.00%
+  Swings: 3 bullish, 0 bearish
+  Daily tags: 2013 total (1161 major, 852 minor) — 57.7% are MAJOR_SIGNAL
+  Regime segments: 233
+  ✗ MISSED 2008 Financial Crisis (2008-01-01 to 2008-11-30)
+  ✗ MISSED 2020 COVID Crash (2020-02-01 to 2020-04-15)
+
+====================================================================================================
+
+
+SUMMARY
+====================================================================================================
+Average swing filter rate: 7.8%
+Average MAJOR_SIGNAL rate: 57.8%
+Crash detection: 5/10 windows detected
