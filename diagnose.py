@@ -36,11 +36,17 @@ def diagnose_daily_tags(ticker: str, df: pd.DataFrame, sample_size: int = 100) -
     tag_strengths = {code.value: [] for code in EvidenceCode}
     
     for context in daily_contexts:
+<<<<<<< HEAD
         # NO_SUPPLY (corrected extremity: measure below threshold, not vs 1.0)
         if context.direction < 0 and context.spread_percentile < 0.35 and context.volume_percentile < 0.40:
             spread_extremity = (0.35 - context.spread_percentile) / 0.35
             volume_extremity = (0.40 - context.volume_percentile) / 0.40
             strength = (spread_extremity + volume_extremity) / 2
+=======
+        # NO_SUPPLY
+        if context.direction < 0 and context.spread_percentile < 0.35 and context.volume_percentile < 0.40:
+            strength = (1.0 - context.spread_percentile + 1.0 - context.volume_percentile) / 2
+>>>>>>> 9ffbb9b9d2afcaae6edb507cbf7f1dc59fa1df00
             tags_fired['no_supply'].append({
                 'date': context.date,
                 'strength': strength,
@@ -49,11 +55,17 @@ def diagnose_daily_tags(ticker: str, df: pd.DataFrame, sample_size: int = 100) -
             })
             tag_strengths['no_supply'].append(strength)
         
+<<<<<<< HEAD
         # NO_DEMAND (corrected extremity: measure below threshold, not vs 1.0)
         if context.direction > 0 and context.spread_percentile < 0.35 and context.volume_percentile < 0.40:
             spread_extremity = (0.35 - context.spread_percentile) / 0.35
             volume_extremity = (0.40 - context.volume_percentile) / 0.40
             strength = (spread_extremity + volume_extremity) / 2
+=======
+        # NO_DEMAND
+        if context.direction > 0 and context.spread_percentile < 0.35 and context.volume_percentile < 0.40:
+            strength = (1.0 - context.spread_percentile + 1.0 - context.volume_percentile) / 2
+>>>>>>> 9ffbb9b9d2afcaae6edb507cbf7f1dc59fa1df00
             tags_fired['no_demand'].append({
                 'date': context.date,
                 'strength': strength,
