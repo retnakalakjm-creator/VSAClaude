@@ -77,12 +77,12 @@ def load_multiple_stocks(data_dir: str, tickers: list) -> Dict[str, pd.DataFrame
     data = {}
     
     for ticker in tickers:
-        # Try different file patterns
+        # Try different file patterns (order matters: most specific first)
         patterns = [
-            f"{data_dir}/{ticker}.csv",
-            f"{data_dir}/{ticker}.NS.csv",
-            f"{data_dir}/{ticker.lower()}.csv",
-            f"{data_dir}/{ticker.upper()}.csv",
+            f"{data_dir}/{ticker}.NS.csv",      # HDFCBANK.NS.csv (NSE standard)
+            f"{data_dir}/{ticker.upper()}.csv", # HDFCBANK.csv (uppercase)
+            f"{data_dir}/{ticker}.csv",         # As-is
+            f"{data_dir}/{ticker.lower()}.csv", # hdfcbank.csv (lowercase)
         ]
         
         filepath = None
@@ -92,13 +92,15 @@ def load_multiple_stocks(data_dir: str, tickers: list) -> Dict[str, pd.DataFrame
                 break
         
         if filepath is None:
-            print(f"⚠ Skipped {ticker}: no data file found (tried {patterns[0]})")
+            print(f"⚠ Skipped {ticker}: no data file found")
+            print(f"  Looked for: {patterns[0]}, {patterns[1]}, {patterns[2]}")
             continue
         
         try:
             df = load_stock_data(filepath)
             data[ticker] = df
             print(f"✓ Loaded {ticker}: {len(df)} bars from {df.index[0].date()} to {df.index[-1].date()}")
+            print(f"  File: {Path(filepath).name}")
         except (FileNotFoundError, ValueError) as e:
             print(f"✗ Failed to load {ticker}: {e}")
     

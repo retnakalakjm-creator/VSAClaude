@@ -41,7 +41,8 @@ DAILY_WEAK_CLV = 0.35
 # ============================================================================
 # Composite strength score >= this threshold = MAJOR_SIGNAL
 # Otherwise = MINOR_OBSERVATION (if fired) or NEUTRAL (if didn't fire)
-TIER_MAJOR_THRESHOLD = 0.40
+# Tuned via historical diagnostic to achieve ~50% MAJOR_SIGNAL rate
+TIER_MAJOR_THRESHOLD = 0.50
 
 # ============================================================================
 # TREND SETTINGS

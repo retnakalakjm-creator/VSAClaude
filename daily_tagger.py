@@ -92,17 +92,26 @@ def tag_daily_bars(contexts: List[DailyContext]) -> List[DailyTag]:
 
 
 def _check_no_supply(context: DailyContext) -> DailyTag | None:
-    """No Supply: down day, narrow spread, low volume."""
+    """No Supply: down day, narrow spread, low volume.
+    
+    Extremity measured as distance BELOW the threshold, not vs 1.0.
+    This prevents a bar that just barely qualifies (pctile=0.29 vs threshold 0.30)
+    from getting high strength (0.71), and reserves high strength for truly
+    extreme readings (pctile=0.05).
+    """
     if context.direction >= 0:
         return None
-    
-    spread_strength = 1.0 - context.spread_percentile  # inverted: low = more extreme
-    volume_strength = 1.0 - context.volume_percentile
     
     if (context.spread_percentile < DAILY_LOW_SPREAD_PCTILE and
         context.volume_percentile < DAILY_LOW_VOL_PCTILE):
         
-        composite_strength = (spread_strength + volume_strength) / 2
+        # Extremity = how far BELOW the threshold (0.0 at threshold, 1.0 at zero percentile)
+        spread_extremity = (DAILY_LOW_SPREAD_PCTILE - context.spread_percentile) / DAILY_LOW_SPREAD_PCTILE
+        volume_extremity = (DAILY_LOW_VOL_PCTILE - context.volume_percentile) / DAILY_LOW_VOL_PCTILE
+        
+        composite_strength = (spread_extremity + volume_extremity) / 2
+        composite_strength = min(1.0, max(0.0, composite_strength))
+        
         tier = SignalTier.MAJOR_SIGNAL if composite_strength >= TIER_MAJOR_THRESHOLD else SignalTier.MINOR_OBSERVATION
         
         return DailyTag(
@@ -118,17 +127,23 @@ def _check_no_supply(context: DailyContext) -> DailyTag | None:
 
 
 def _check_no_demand(context: DailyContext) -> DailyTag | None:
-    """No Demand: up day, narrow spread, low volume."""
+    """No Demand: up day, narrow spread, low volume.
+    
+    Extremity measured as distance BELOW the threshold (same as NO_SUPPLY).
+    """
     if context.direction <= 0:
         return None
-    
-    spread_strength = 1.0 - context.spread_percentile
-    volume_strength = 1.0 - context.volume_percentile
     
     if (context.spread_percentile < DAILY_LOW_SPREAD_PCTILE and
         context.volume_percentile < DAILY_LOW_VOL_PCTILE):
         
-        composite_strength = (spread_strength + volume_strength) / 2
+        # Extremity = how far BELOW the threshold
+        spread_extremity = (DAILY_LOW_SPREAD_PCTILE - context.spread_percentile) / DAILY_LOW_SPREAD_PCTILE
+        volume_extremity = (DAILY_LOW_VOL_PCTILE - context.volume_percentile) / DAILY_LOW_VOL_PCTILE
+        
+        composite_strength = (spread_extremity + volume_extremity) / 2
+        composite_strength = min(1.0, max(0.0, composite_strength))
+        
         tier = SignalTier.MAJOR_SIGNAL if composite_strength >= TIER_MAJOR_THRESHOLD else SignalTier.MINOR_OBSERVATION
         
         return DailyTag(
