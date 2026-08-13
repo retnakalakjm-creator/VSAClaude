@@ -1,0 +1,74 @@
+
+====================================================================================================
+DIAGNOSTIC: HDFCBANK.NS Daily Tag Analysis
+====================================================================================================
+
+TAG FIRING ANALYSIS: which patterns occur and at what strength?
+
+absorption               : 0 instances
+buying_climax            :  128 instances ( 1.67% of bars)
+  Strength range: 0.000 → 0.949
+  Strength stats: mean=0.475, median=0.477
+    At threshold 0.3:  76.6% would be MAJOR
+    At threshold 0.4:  63.3% would be MAJOR
+    At threshold 0.5:  43.0% would be MAJOR
+    At threshold 0.6:  29.7% would be MAJOR
+
+no_demand                :  757 instances ( 9.85% of bars)
+  Strength range: 0.675 → 0.950
+  Strength stats: mean=0.839, median=0.850
+    At threshold 0.3: 100.0% would be MAJOR
+    At threshold 0.4: 100.0% would be MAJOR
+    At threshold 0.5: 100.0% would be MAJOR
+    At threshold 0.6: 100.0% would be MAJOR
+
+no_supply                :  624 instances ( 8.12% of bars)
+  Strength range: 0.675 → 0.950
+  Strength stats: mean=0.827, median=0.825
+    At threshold 0.3: 100.0% would be MAJOR
+    At threshold 0.4: 100.0% would be MAJOR
+    At threshold 0.5: 100.0% would be MAJOR
+    At threshold 0.6: 100.0% would be MAJOR
+
+selling_climax           :  314 instances ( 4.09% of bars)
+  Strength range: 0.051 → 1.000
+  Strength stats: mean=0.687, median=0.678
+    At threshold 0.3:  89.5% would be MAJOR
+    At threshold 0.4:  77.7% would be MAJOR
+    At threshold 0.5:  67.5% would be MAJOR
+    At threshold 0.6:  56.7% would be MAJOR
+
+spring                   : 0 instances
+stopping_volume          :  498 instances ( 6.48% of bars)
+  Strength range: 0.001 → 1.000
+  Strength stats: mean=0.468, median=0.477
+    At threshold 0.3:  73.1% would be MAJOR
+    At threshold 0.4:  59.0% would be MAJOR
+    At threshold 0.5:  46.8% would be MAJOR
+    At threshold 0.6:  29.5% would be MAJOR
+
+structural_progression_improving: 0 instances
+structural_progression_weakening: 0 instances
+upthrust                 : 0 instances
+
+====================================================================================================
+RECOMMENDATIONS
+====================================================================================================
+
+Current state (threshold=0.40):
+  Total daily tags: 2321
+  MAJOR_SIGNAL count: 2000 (86.2%)
+  Target: 40-60% MAJOR_SIGNAL
+
+ISSUE: Too many MAJOR_SIGNAL tags (> 65%)
+  This means thresholds are too easy to cross.
+
+  At threshold 0.45:  83.9% MAJOR
+  At threshold 0.5:  81.0% MAJOR
+  At threshold 0.55:  78.3% MAJOR
+  At threshold 0.6:  75.1% MAJOR
+  At threshold 0.65:  73.1% MAJOR
+  At threshold 0.7:  69.1% MAJOR
+
+  RECOMMENDATION: Increase TIER_MAJOR_THRESHOLD from 0.40 to 0.55-0.60
+  This will make it harder to achieve MAJOR_SIGNAL status.
